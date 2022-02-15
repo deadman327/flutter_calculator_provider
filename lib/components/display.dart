@@ -26,7 +26,7 @@ class Display extends StatelessWidget {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             reverse: true,
-            child: Text(provider.result, style: textStyle),
+            child: Text(provider.data, style: textStyle),
           ),
           const SizedBox(height: 80),
         ],

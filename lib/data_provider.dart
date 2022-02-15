@@ -3,26 +3,32 @@ import 'package:math_expressions/math_expressions.dart';
 
 class DataProvider with ChangeNotifier {
   final List<String> operators = ['/', 'x', '-', '+'];
-  String _result = '';
+  String _data = '';
+  bool _isResult = false;
 
-  String get result => _result;
+  String get data => _data;
 
   void pressNumber(String number) {
-    _result = '$result$number';
+    if (_isResult) {
+      _data = '';
+      _isResult = false;
+    }
+    _data = '$data$number';
     notifyListeners();
   }
 
   void pressAction(String action) {
-    if (result != '') {
-      final last = result[result.length - 1];
+    if (data != '') {
+      final last = data[data.length - 1];
+
       switch (action) {
         case 'del':
-          _result = _result.substring(0, _result.length - 1);
+          _data = _data.substring(0, _data.length - 1);
           notifyListeners();
           break;
 
         case 'c':
-          _result = '';
+          _data = '';
           notifyListeners();
           break;
 
@@ -31,30 +37,34 @@ class DataProvider with ChangeNotifier {
           break;
 
         default:
-          if (!operators.contains(last)) {
+          if (!operators.contains(last) && !_isResult) {
             pressNumber(action);
+          } else if (operators.contains(last)) {
+            _data = _data.substring(0, _data.length - 1) + action;
+            notifyListeners();
           } else {
-            _result = _result.substring(0, _result.length - 1) + action;
+            _isResult = false;
+            pressNumber(action);
           }
-          notifyListeners();
           break;
       }
     }
   }
 
   void equalResult() {
-    final last = result[result.length - 1];
+    final last = data[data.length - 1];
     if (!operators.contains(last)) {
-      _result = _result.replaceAll('x', '*');
+      _data = _data.replaceAll('x', '*');
 
       Parser p = Parser();
       ContextModel cm = ContextModel();
       RegExp regex = RegExp(r"([.]*0+)(?!.*\d)");
 
       String exp =
-          p.parse(_result).evaluate(EvaluationType.REAL, cm).toStringAsFixed(3);
+          p.parse(_data).evaluate(EvaluationType.REAL, cm).toStringAsFixed(3);
 
-      _result = exp.toString().replaceAll(regex, '');
+      _data = exp.toString().replaceAll(regex, '');
+      _isResult = true;
       notifyListeners();
     }
   }
