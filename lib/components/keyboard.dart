@@ -9,6 +9,7 @@ class Keyboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
+    final background = Theme.of(context).backgroundColor;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -16,10 +17,11 @@ class Keyboard extends StatelessWidget {
       children: [
         Column(
           children: [
-            ActionButton(text: 'c'),
+            ActionButton(text: 'AC'),
             NumberButton('1'),
             NumberButton('4'),
             NumberButton('7'),
+            ActionButton(text: '.', background: const Color(0xff2c2f42)),
           ],
         ),
         Column(
@@ -43,13 +45,17 @@ class Keyboard extends StatelessWidget {
             NumberButton('3'),
             NumberButton('7'),
             NumberButton('9'),
+            ActionButton(
+              text: 'del',
+              icon: Icons.backspace_outlined,
+              background: const Color(0xff2c2f42),
+            ),
           ],
         ),
         Column(
           children: [
             ActionButton(
-              text: 'del',
-              icon: Icons.backspace_outlined,
+              text: '%',
               color: primaryColor,
             ),
             ActionButton(

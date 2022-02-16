@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
 
 class DataProvider with ChangeNotifier {
-  final List<String> operators = ['/', 'x', '-', '+'];
+  final List<String> operators = ['/', 'x', '-', '+', '%'];
   String _data = '';
   bool _isResult = false;
 
@@ -22,12 +22,20 @@ class DataProvider with ChangeNotifier {
       final last = data[data.length - 1];
 
       switch (action) {
+        case '.':
+          final regEx = RegExp(r'[^\d\.]');
+          final arrayData = data.split(regEx);
+
+          if (!arrayData[arrayData.length - 1].contains('.')) {
+            pressNumber(action);
+          }
+          break;
         case 'del':
           _data = _data.substring(0, _data.length - 1);
           notifyListeners();
           break;
 
-        case 'c':
+        case 'AC':
           _data = '';
           notifyListeners();
           break;
