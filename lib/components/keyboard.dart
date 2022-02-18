@@ -17,11 +17,11 @@ class Keyboard extends StatelessWidget {
       children: [
         Column(
           children: [
-            ActionButton(text: 'AC'),
+            ActionButton(text: ''),
             NumberButton('1'),
             NumberButton('4'),
             NumberButton('7'),
-            ActionButton(text: '.', background: const Color(0xff2c2f42)),
+            ActionButton(text: '.', background: Color.fromARGB(255, 170, 8, 8)),
           ],
         ),
         Column(
@@ -47,8 +47,8 @@ class Keyboard extends StatelessWidget {
             NumberButton('9'),
             ActionButton(
               text: 'del',
-              icon: Icons.backspace_outlined,
-              background: const Color(0xff2c2f42),
+              icon: Icons.disabled_by_default_outlined,
+              background: Color.fromARGB(255, 170, 8, 8),
             ),
           ],
         ),
@@ -56,20 +56,23 @@ class Keyboard extends StatelessWidget {
           children: [
             ActionButton(
               text: '%',
+              height: 1,
               color: primaryColor,
             ),
             ActionButton(
               text: '-',
+              height: 1,
               color: primaryColor,
             ),
             ActionButton(
               text: '+',
+              height: 1,
               color: primaryColor,
             ),
             ActionButton(
               text: '=',
               background: primaryColor,
-              height: 2,
+              height: 1,
             ),
           ],
         ),

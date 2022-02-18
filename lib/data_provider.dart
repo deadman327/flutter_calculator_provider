@@ -35,13 +35,13 @@ class DataProvider with ChangeNotifier {
           notifyListeners();
           break;
 
+        case '=':
+          equalResult();
+          break;
+
         case 'AC':
           _data = '';
           notifyListeners();
-          break;
-
-        case '=':
-          equalResult();
           break;
 
         default:

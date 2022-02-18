@@ -13,7 +13,7 @@ class ActionButton extends StatelessWidget {
   ActionButton({
     Key? key,
     required this.text,
-    this.background = const Color(0xff34374a),
+    this.background = const Color(0xFF0000),
     this.color = const Color(0xffffffff),
     this.icon,
     this.height = 1,

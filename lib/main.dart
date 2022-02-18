@@ -35,8 +35,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Calculator',
       theme: ThemeData(
-        primaryColor: const Color(0xffffb902),
-        backgroundColor: const Color(0xff222433),
+        primaryColor: Color.fromARGB(255, 201, 27, 27),
+        backgroundColor: Color.fromARGB(255, 0, 0, 0),
         brightness: Brightness.dark,
       ),
       home: const Home(),

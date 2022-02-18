@@ -14,7 +14,7 @@ class NumberButton extends StatelessWidget {
     final dataProvider = context.read<DataProvider>();
 
     var buttonStyle = ElevatedButton.styleFrom(
-      primary: const Color(0xff2c2f42),
+      primary: Color.fromARGB(255, 20, 20, 20),
       elevation: 0,
     );
 
